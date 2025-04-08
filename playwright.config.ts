@@ -13,7 +13,7 @@ import { baseConfig } from './src/config/baseConfig';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './src/tests/withPageObjects',
+  testDir: './src/tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
