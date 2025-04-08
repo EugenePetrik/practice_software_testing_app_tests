@@ -34,7 +34,7 @@ export default defineConfig({
 
     testIdAttribute: 'data-test',
 
-    headless: false,
+    headless: !!process.env.CI,
   },
   timeout: 30_000,
   expect: {
