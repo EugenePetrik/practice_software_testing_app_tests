@@ -1,0 +1,49 @@
+{
+  "name": "practice-software-testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky",
+    "postinstall": "npx playwright install",
+    "type-check": "tsc --noEmit",
+    "lint": "npx eslint --fix",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@playwright/test": "^1.51.1",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@types/node": "^22.13.14",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "@typescript-eslint/parser": "^8.29.0",
+    "eslint": "^9.23.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-check-file": "^3.1.0",
+    "eslint-plugin-playwright": "^2.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "typescript-eslint": "^8.29.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(ts|tsx)": [
+      "npm run lint",
+      "npm run type-check"
+    ]
+  },
+  "prettier": {}
+}
