@@ -1,4 +1,3 @@
-import { globalIgnores } from 'eslint/config';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import googleConfig from 'eslint-config-google';
@@ -12,7 +11,6 @@ export default [
   ...tseslint.configs.recommended,
   ...tseslint.configs.stylistic,
   googleConfig,
-  globalIgnores(['src/.schema/**']),
   {
     files: ['**/*.{js,mjs,cjs,ts}'],
     plugins: {
@@ -57,7 +55,7 @@ export default [
   {
     ignores: [
       'node_modules',
-      '.schema',
+      'playwright-report',
       'test-report',
       'test-results',
     ],
