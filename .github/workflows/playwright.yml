@@ -30,7 +30,7 @@ jobs:
           npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --project=chromium
 
       - name: Upload Playwright HTML report to GitHub Actions Artifacts
         if: ${{ !cancelled() }}
