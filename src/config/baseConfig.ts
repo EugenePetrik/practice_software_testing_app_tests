@@ -12,7 +12,4 @@ export const baseConfig: IBaseConfig = {
   USER_EMAIL: process.env.USER_EMAIL!,
   USER_PASSWORD: process.env.USER_PASSWORD!,
   USER_NAME: process.env.USER_NAME!,
-  ADMIN_EMAIL: process.env.ADMIN_EMAIL!,
-  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD!,
-  ADMIN_NAME: process.env.ADMIN_NAME!,
 };
