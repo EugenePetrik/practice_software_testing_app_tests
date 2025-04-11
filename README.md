@@ -27,7 +27,7 @@ npm -v
 - Clone the repository
 
 ```bash
-git clone https://github.com/EugenePetrik/practice_softwaretesting_app_tests.git
+git clone https://github.com/EugenePetrik/practice_software_testing_app_tests.git
 cd practice_softwaretesting_app_tests
 ```
 
