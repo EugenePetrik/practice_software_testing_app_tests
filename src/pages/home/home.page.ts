@@ -1,4 +1,4 @@
-import { expect, Locator } from '@playwright/test';
+import { test, expect, Locator } from '@playwright/test';
 import { FilterFragment, SortOption } from './fragment/filter.fragment';
 import { BasePage } from '../base.page';
 
@@ -23,6 +23,16 @@ export class HomePage extends BasePage {
         const productNames = await this.getProductNames();
         const sortedProductNames = productNames.toSorted((a, b) => a.localeCompare(b));
         const areProductsSorted = productNames.join() === sortedProductNames.join();
+
+        await test.info().attach('Sorted products names A - Z on UI', {
+          body: JSON.stringify(productNames, null, 2),
+          contentType: 'application/json',
+        });
+        await test.info().attach('Sorted products names A - Z after calculation', {
+          body: JSON.stringify(sortedProductNames, null, 2),
+          contentType: 'application/json',
+        });
+
         expect(areProductsSorted, `Products are not sorted from ${sortBy}`).toBe(true);
         break;
       }
@@ -30,6 +40,16 @@ export class HomePage extends BasePage {
         const productNames = await this.getProductNames();
         const sortedProductNames = productNames.toSorted((a, b) => b.localeCompare(a));
         const areProductsSorted = productNames.join() === sortedProductNames.join();
+
+        await test.info().attach('Sorted products names A - Z on UI', {
+          body: JSON.stringify(productNames, null, 2),
+          contentType: 'application/json',
+        });
+        await test.info().attach('Sorted products names A - Z after calculation', {
+          body: JSON.stringify(sortedProductNames, null, 2),
+          contentType: 'application/json',
+        });
+
         expect(areProductsSorted, `Products are not sorted from ${sortBy}`).toBe(true);
         break;
       }
@@ -37,6 +57,16 @@ export class HomePage extends BasePage {
         const productPrices = await this.getProductPrices();
         const sortedProductPrices = productPrices.toSorted((a, b) => a - b);
         const areProductsSorted = productPrices.join() === sortedProductPrices.join();
+
+        await test.info().attach('Sorted products prices Low - High on UI', {
+          body: JSON.stringify(productPrices, null, 2),
+          contentType: 'application/json',
+        });
+        await test.info().attach('Sorted products prices Low - High after calculation', {
+          body: JSON.stringify(sortedProductPrices, null, 2),
+          contentType: 'application/json',
+        });
+
         expect(areProductsSorted, `Products are not sorted from ${sortBy}`).toBe(true);
         break;
       }
@@ -44,6 +74,16 @@ export class HomePage extends BasePage {
         const productPrices = await this.getProductPrices();
         const sortedProductPrices = productPrices.toSorted((a, b) => b - a);
         const areProductsSorted = productPrices.join() === sortedProductPrices.join();
+
+        await test.info().attach('Sorted products prices Low - High on UI', {
+          body: JSON.stringify(productPrices, null, 2),
+          contentType: 'application/json',
+        });
+        await test.info().attach('Sorted products prices Low - High after calculation', {
+          body: JSON.stringify(sortedProductPrices, null, 2),
+          contentType: 'application/json',
+        });
+
         expect(areProductsSorted, `Products are not sorted from ${sortBy}`).toBe(true);
         break;
       }
