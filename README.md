@@ -1,4 +1,4 @@
-# PracticeSoftwareTesting Tests
+# PracticeSoftwareTesting E2E Tests
 
 This repository contains automation scenarios for the [PracticeSoftwareTesting](https://practicesoftwaretesting.com/) application, using Playwright for robust browser automation. Tests can be run locally or in a CI/CD pipeline with GitHub Actions, with environment-specific configurations.
 
@@ -66,14 +66,6 @@ npx playwright test
 
 ```bash
 npx playwright test --project=chromium
-```
-
-```bash
-npx playwright test --project=firefox
-```
-
-```bash
-npx playwright test --project=webkit
 ```
 
 ### Run tests in UI mode
