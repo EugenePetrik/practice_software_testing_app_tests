@@ -9,6 +9,8 @@ on:
 jobs:
   playwright-tests:
     timeout-minutes: 10
+    env:
+      WEB_URL: ${{ secrets.WEB_URL }}
     container:
       image: mcr.microsoft.com/playwright:v1.51.1-jammy
     runs-on: ubuntu-latest
