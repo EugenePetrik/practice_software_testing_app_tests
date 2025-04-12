@@ -1,22 +1,11 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator } from '@playwright/test';
 import { FilterFragment, SortOption } from './fragment/filter.fragment';
+import { BasePage } from '../base.page';
 
-export class HomePage {
-  readonly page: Page;
-  readonly productName: Locator;
-  readonly productPrice: Locator;
-  readonly filters: FilterFragment;
-
-  constructor(page: Page) {
-    this.page = page;
-    this.productName = page.getByTestId('product-name');
-    this.productPrice = page.getByTestId('product-price');
-    this.filters = new FilterFragment(this.page);
-  }
-
-  async goto(): Promise<void> {
-    await this.page.goto('/');
-  }
+export class HomePage extends BasePage {
+  readonly productName: Locator = this.page.getByTestId('product-name');
+  readonly productPrice: Locator = this.page.getByTestId('product-price');
+  readonly filters: FilterFragment = new FilterFragment(this.page);
 
   async getProductNames(): Promise<string[]> {
     const productNames = await this.productName.allTextContents();
