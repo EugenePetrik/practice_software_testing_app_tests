@@ -2,6 +2,7 @@ import { test, expect, Locator } from '@playwright/test';
 import { FilterFragment, SortOption } from './fragment/filter.fragment';
 import { BasePage } from '../base.page';
 import { HAND_TOOLS, OTHER, POWER_TOOLS } from '../../../typings/categories';
+import { step } from '../../../support/reporters/step';
 
 export class HomePage extends BasePage {
   public readonly pagePath: string = '/';
@@ -10,6 +11,7 @@ export class HomePage extends BasePage {
   readonly productPrice: Locator = this.page.getByTestId('product-price');
   readonly filters: FilterFragment = new FilterFragment(this.page);
 
+  @step('Open Home page')
   async goto(): Promise<void> {
     const responsePromise = this.page.waitForResponse((response) =>
       response.url().includes('/products?between=price,1,100&page=1')
@@ -20,16 +22,19 @@ export class HomePage extends BasePage {
     await responsePromise;
   }
 
+  @step('Get products names')
   async getProductNames(): Promise<string[]> {
     const productNames = await this.productName.allTextContents();
     return productNames;
   }
 
+  @step('Get products prices')
   async getProductPrices(): Promise<number[]> {
     const productPrices = await this.productPrice.allTextContents();
     return productPrices.map((price) => parseInt(price.replace('$', '').trim()));
   }
 
+  @step('Assert products sorted')
   async expectSortedProducts(sortBy: SortOption): Promise<void> {
     switch (sortBy) {
       case 'Name (A - Z)': {
@@ -121,6 +126,7 @@ export class HomePage extends BasePage {
     }
   }
 
+  @step('Assert products filtered by categories')
   async expectFilteredProductsByCategory(categories: (HAND_TOOLS | POWER_TOOLS | OTHER)[]): Promise<void> {
     const productNames = await this.getProductNames();
 
