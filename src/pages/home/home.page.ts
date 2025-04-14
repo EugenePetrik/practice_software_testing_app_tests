@@ -52,9 +52,9 @@ export class HomePage extends BasePage {
         });
 
         expect(
-            areProductsNamesSorted,
-            `Products are sorted incorrectly from A to Z.
-              Actual products names - ${productNames}, expected products names - ${sortedProductsNamesAZ}`,
+          areProductsNamesSorted,
+          `Products are sorted incorrectly from A to Z.
+              Actual products names - ${productNames.join(', ')}, expected products names - ${sortedProductsNamesAZ.join(', ')}`,
         ).toBe(true);
         break;
       }
@@ -73,9 +73,9 @@ export class HomePage extends BasePage {
         });
 
         expect(
-            areProductsNamesSorted,
-            `Products are sorted incorrectly from Z to A.
-              Actual products names - ${productNames}, expected products names - ${sortedProductsNamesZA}`,
+          areProductsNamesSorted,
+          `Products are sorted incorrectly from Z to A.
+              Actual products names - ${productNames.join(', ')}, expected products names - ${sortedProductsNamesZA.join(', ')}`,
         ).toBe(true);
         break;
       }
@@ -94,9 +94,9 @@ export class HomePage extends BasePage {
         });
 
         expect(
-            areProductsPricesSorted,
-            `Products are sorted incorrectly from Low to High.
-              Actual products prices - ${productPrices}, expected products prices - ${sortedProductsPricesLowHigh}`,
+          areProductsPricesSorted,
+          `Products are sorted incorrectly from Low to High.
+              Actual products prices - ${productPrices.join(', ')}, expected products prices - ${sortedProductsPricesLowHigh.join(', ')}`,
         ).toBe(true);
         break;
       }
@@ -115,14 +115,14 @@ export class HomePage extends BasePage {
         });
 
         expect(
-            areProductsPricesSorted,
-            `Products are sorted incorrectly from High to Low.
-              Actual products prices - ${productPrices}, expected products prices - ${sortedProductsPricesHighLow}`,
+          areProductsPricesSorted,
+          `Products are sorted incorrectly from High to Low.
+              Actual products prices - ${productPrices.join(', ')}, expected products prices - ${sortedProductsPricesHighLow.join(', ')}`,
         ).toBe(true);
         break;
       }
       default:
-        throw new Error(`Unknown sort option: ${sortBy}`);
+        throw new Error(`Unknown sort option: ${sortBy as string}`);
     }
   }
 
@@ -140,9 +140,9 @@ export class HomePage extends BasePage {
     });
 
     expect(
-        unexpectedProducts.length,
-        `Unexpected products found for categories: ${categories.join(', ')}.
-            Unexpected: ${unexpectedProducts.join(', ')}.\nAll: ${productNames.join(', ')}`,
+      unexpectedProducts.length,
+      `Unexpected products found for categories: ${categories.join(', ')}.
+          Unexpected: ${unexpectedProducts.join(', ')}.\nAll: ${productNames.join(', ')}`,
     ).toBe(0);
   }
 }

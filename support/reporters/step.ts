@@ -1,4 +1,7 @@
-/* eslint-disable no-invalid-this */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */ 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { test } from '@playwright/test';
@@ -20,8 +23,8 @@ import { test } from '@playwright/test';
  */
 export function step<This, Args extends any[], Return>(message?: string) {
   return function actualDecorator(
-      target: (this: This, ...args: Args)=> Promise<Return>,
-      context: ClassMethodDecoratorContext<This, (this: This, ...args: Args)=> Promise<Return>>,
+    target: (this: This, ...args: Args)=> Promise<Return>,
+    context: ClassMethodDecoratorContext<This, (this: This, ...args: Args)=> Promise<Return>>,
   ) {
     function replacementMethod(this: any, ...args: Args) {
       const name = message ?? `${this.constructor.name}.${context.name as string}`;
