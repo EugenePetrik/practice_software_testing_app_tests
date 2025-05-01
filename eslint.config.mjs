@@ -59,6 +59,7 @@ export default [
       'space-before-blocks': 'error',
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-confusing-void-expression': 'off',
     },
   },
   // Playwright ESlint config
@@ -69,6 +70,7 @@ export default [
       ...playwright.configs['flat/recommended'].rules,
       'playwright/no-focused-test': 'error',
       'playwright/expect-expect': 'off',
+      'playwright/no-standalone-expect': 'off',
     },
   },
   // Check file ESlint config

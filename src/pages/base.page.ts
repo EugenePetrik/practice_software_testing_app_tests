@@ -10,7 +10,7 @@ export abstract class BasePage extends PageHolder {
   /**
    * Opens the page in the browser
    */
-  async goto(path?: string): Promise<void> {
+  async open(path?: string): Promise<void> {
     await this.page.goto(path ?? this.pagePath);
   }
 }

@@ -1,4 +1,4 @@
-import { SortOption } from '../src/pages/home/fragment/filter.fragment';
+import { SortOption } from '../src/pages/home/components/filter.component';
 
 export const dataSortType: { sortBy: SortOption }[] = [
   {

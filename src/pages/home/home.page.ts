@@ -1,40 +1,56 @@
 import { test, expect, Locator } from '@playwright/test';
-import { FilterFragment, SortOption } from './fragment/filter.fragment';
+import { FilterComponent, SortOption } from './components/filter.component';
 import { BasePage } from '../base.page';
 import { HAND_TOOLS, OTHER, POWER_TOOLS } from '../../../typings/categories';
-import { step } from '../../../support/reporters/step';
+import { NotificationComponent } from '../components/notification.component';
+import { HeaderComponent } from '../components/header.component';
 
 export class HomePage extends BasePage {
   public readonly pagePath: string = '/';
 
+  readonly notification: NotificationComponent = new NotificationComponent(this.page);
+  readonly header: HeaderComponent = new HeaderComponent(this.page);
+  readonly filters: FilterComponent = new FilterComponent(this.page);
+
   readonly productName: Locator = this.page.getByTestId('product-name');
   readonly productPrice: Locator = this.page.getByTestId('product-price');
-  readonly filters: FilterFragment = new FilterFragment(this.page);
 
-  @step('Open Home page')
-  async goto(): Promise<void> {
+  async open(): Promise<void> {
     const responsePromise = this.page.waitForResponse((response) =>
-      response.url().includes('/products?between=price,1,100&page=1')
+      response.url().includes('/products?between=')
       && response.status() === 200
       && response.request().method() === 'GET',
     );
-    await this.page.goto(this.pagePath);
+    await super.open(this.pagePath);
     await responsePromise;
   }
 
-  @step('Get products names')
   async getProductNames(): Promise<string[]> {
     const productNames = await this.productName.allTextContents();
     return productNames;
   }
 
-  @step('Get products prices')
   async getProductPrices(): Promise<number[]> {
     const productPrices = await this.productPrice.allTextContents();
     return productPrices.map((price) => parseInt(price.replace('$', '').trim()));
   }
 
-  @step('Assert products sorted')
+  async getProductDetailsByIndex(index = 0): Promise<{ title: string; price: number }> {
+    await expect(this.productName, 'Products not loaded').not.toHaveCount(0);
+
+    const productNameText = await this.productName.nth(index).textContent();
+    const productPriceText = await this.productPrice.nth(index).textContent();
+
+    return {
+      title: productNameText?.trim() ?? '',
+      price: parseFloat(productPriceText?.replace('$', '').trim() ?? '0'),
+    };
+  }
+
+  async openProductDetails(title: string): Promise<void> {
+    await this.productName.filter({ hasText: title }).click();
+  }
+
   async expectSortedProducts(sortBy: SortOption): Promise<void> {
     switch (sortBy) {
       case 'Name (A - Z)': {
@@ -126,7 +142,6 @@ export class HomePage extends BasePage {
     }
   }
 
-  @step('Assert products filtered by categories')
   async expectFilteredProductsByCategory(categories: (HAND_TOOLS | POWER_TOOLS | OTHER)[]): Promise<void> {
     const productNames = await this.getProductNames();
 

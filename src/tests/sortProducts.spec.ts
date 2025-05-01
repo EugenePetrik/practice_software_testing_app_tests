@@ -1,21 +1,18 @@
-import { test } from '@playwright/test';
-import { HomePage } from '../pages/home/home.page';
-import { dataSortType } from '../../testData/dataSortOptions';
+import { test } from '../fixtures';
+import { dataSortType } from '../../testData/sortOptionsData';
 
 dataSortType.forEach(({ sortBy }) => {
-  test(`Verify user can perform sorting products by "${sortBy}"`, async ({ page }) => {
-    const homePage = new HomePage(page);
-
+  test(`Verify user can perform sorting products by "${sortBy}"`, async ({ app }) => {
     await test.step('Navigate to the home page', async () => {
-      await homePage.goto();
+      await app.home.open();
     });
 
     await test.step('Select sorting option', async () => {
-      await homePage.filters.selectSortOption(sortBy);
+      await app.home.filters.selectSortOption(sortBy);
     });
 
     await test.step('Verify products are sorted', async () => {
-      await homePage.expectSortedProducts(sortBy);
+      await app.home.expectSortedProducts(sortBy);
     });
   });
 });
