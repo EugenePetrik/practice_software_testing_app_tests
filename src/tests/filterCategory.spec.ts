@@ -1,5 +1,8 @@
 import { test } from '../fixtures';
 import { dataCategories } from '../../testData/categoriesData';
+import path from 'path';
+
+test.use({ storageState: path.join(process.cwd(), '.auth', 'admin.json') });
 
 dataCategories.forEach(({ categoriesToSelect, expectedCategories }) => {
   test(`Verify user can filter products by "${categoriesToSelect.join(' / ')}" categories`, async ({ app }) => {
