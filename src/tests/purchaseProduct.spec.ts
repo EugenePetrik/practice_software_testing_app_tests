@@ -4,23 +4,8 @@ import { CREDIT_CARD_DATA, PAYMENT_METHOD } from '../../testData/paymentData';
 import { baseConfig } from '../../config/baseConfig';
 
 test('Verify user can purchase a product', async ({ app, page }) => {
-  await test.step('Open Login page', async () => {
-    await app.login.open();
-  });
-
-  await test.step('Fill in login form', async () => {
-    await app.login.loginAs(baseConfig.USER_EMAIL, baseConfig.USER_PASSWORD);
-  });
-
-  await test.step('Verify successful login', async () => {
-    await expect(page).toHaveURL(/\/account$/);
-
-    await expect(app.account.pageTitle).toHaveText('My account');
-    await expect(app.account.header.navMenuDropdown).toHaveText(baseConfig.USER_NAME);
-  });
-
   await test.step('Open Home page', async () => {
-    await app.home.header.navigateToHomePage();
+    await app.home.open();
   });
 
   const { title, price } = await app.home.getProductDetailsByIndex();
