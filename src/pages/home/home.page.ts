@@ -160,4 +160,16 @@ export class HomePage extends BasePage {
           Unexpected: ${unexpectedProducts.join(', ')}.\nAll: ${productNames.join(', ')}`,
     ).toBe(0);
   }
+
+  async mockProductsResponse(json: unknown): Promise<void> {
+    await this.page.route('**/products*', async (route) => {
+      await route.fulfill({
+        status: 200,
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(json),
+      });
+    });
+  }
 }
