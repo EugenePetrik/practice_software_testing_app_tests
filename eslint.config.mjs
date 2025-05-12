@@ -71,6 +71,7 @@ export default [
       'playwright/no-focused-test': 'error',
       'playwright/expect-expect': 'off',
       'playwright/no-standalone-expect': 'off',
+      'playwright/no-skipped-test': 'off',
     },
   },
   // Check file ESlint config
