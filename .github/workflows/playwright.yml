@@ -19,7 +19,7 @@ jobs:
       ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
       ADMIN_NAME: ${{ secrets.ADMIN_NAME }}
     container:
-      image: mcr.microsoft.com/playwright:v1.51.1-jammy
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
