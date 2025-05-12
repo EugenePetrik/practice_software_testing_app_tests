@@ -3,6 +3,8 @@ import { BILLING_ADDRESS_DATA } from '../../testData/billingAddressData';
 import { CREDIT_CARD_DATA, PAYMENT_METHOD } from '../../testData/paymentData';
 import { baseConfig } from '../../config/baseConfig';
 
+test.skip(baseConfig.CI, 'Test is skipped in CI due to the Cloudflare protection.');
+
 test('Verify user can purchase a product', async ({ app, page }) => {
   await test.step('Open Login page', async () => {
     await app.login.open();

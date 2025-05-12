@@ -1,6 +1,8 @@
 import { baseConfig } from '../../config/baseConfig';
 import { test, expect } from '../fixtures';
 
+test.skip(baseConfig.CI, 'Test is skipped in CI due to the Cloudflare protection.');
+
 test('Verify login as a user with valid credentials', async ({ app, page }) => {
   await test.step('Open Login page', async () => {
     await app.login.open();
