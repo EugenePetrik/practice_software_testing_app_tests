@@ -33,5 +33,16 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
       },
     },
+    {
+      name: 'chromium-regression',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'api',
+    },
+    {
+      name: 'safari-regression',
+      use: { ...devices['Desktop Safari'] },
+    },
   ],
 });
