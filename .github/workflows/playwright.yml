@@ -29,6 +29,7 @@ jobs:
         run: npm run lint
 
   playwright-tests:
+    needs: [type-check-and-lint]
     timeout-minutes: 10
     env:
       WEB_URL: ${{ secrets.WEB_URL }}
