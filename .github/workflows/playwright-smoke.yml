@@ -1,37 +1,13 @@
-name: Playwright Tests
+name: Playwright Tests Smoke
 
 on:
   push:
-    branches: [ main, master, '**' ]
-  pull_request:
-    branches: [ main, master ]
+    branches: [ '**' ]
   schedule:
     - cron: '0 1 * * 1-5'
 
 jobs:
-  type-check-and-lint:
-    timeout-minutes: 3
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Install Node JS
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run type check
-        run: npm run type-check
-
-      - name: Run lint
-        run: npm run lint
-
-  playwright-tests:
-    needs: [type-check-and-lint]
+  playwright-tests-smoke:
     timeout-minutes: 10
     env:
       WEB_URL: ${{ secrets.WEB_URL }}
@@ -63,7 +39,7 @@ jobs:
           npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test --project=chromium
+        run: npx playwright test --grep "@smoke"
 
       - name: Upload Playwright HTML report to GitHub Actions Artifacts
         if: ${{ !cancelled() }}

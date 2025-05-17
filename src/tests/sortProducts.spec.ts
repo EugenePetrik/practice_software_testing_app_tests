@@ -2,7 +2,7 @@ import { test } from '../fixtures';
 import { dataSortType } from '../../testData/sortOptionsData';
 
 dataSortType.forEach(({ sortBy }) => {
-  test(`Verify user can perform sorting products by "${sortBy}"`, async ({ app }) => {
+  test(`Verify user can perform sorting products by "${sortBy}"`, { tag: ['@smoke'] }, async ({ app }) => {
     await test.step('Navigate to the home page', async () => {
       await app.home.open();
     });

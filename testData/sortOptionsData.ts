@@ -1,5 +1,6 @@
 import { SortOption } from '../src/pages/home/components/filter.component';
 
+// TODO: update test data
 export const dataSortType: { sortBy: SortOption }[] = [
   {
     sortBy: 'Name (A - Z)',
