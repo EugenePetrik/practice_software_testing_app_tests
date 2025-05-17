@@ -24,7 +24,7 @@ on:
         default: '80%'
 
 jobs:
-  playwright-tests:
+  playwright-tests-parametrize:
     timeout-minutes: 10
     env:
       WEB_URL: ${{ github.event.inputs.baseUrl }}
