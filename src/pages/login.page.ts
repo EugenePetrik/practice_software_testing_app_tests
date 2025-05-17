@@ -16,9 +16,9 @@ export class LoginPage extends BasePage {
         && response.request().method() === 'GET',
     );
 
-    await this.emailInput.fill(email);
-    await this.passwordInput.fill(password);
-    await this.loginButton.click();
+    this.emailInput.fill(email);
+    this.passwordInput.fill(password);
+    this.loginButton.click();
 
     await responsePromise;
   }
