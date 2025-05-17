@@ -68,11 +68,7 @@ jobs:
 
       - name: Run Playwright tests
         run: |
-          if [ -z "${{ github.event.inputs.project }}" ]; then
-            xvfb-run npx playwright test -c playwright.config.ts --project=${{ github.event.inputs.project }}
-          else
-            npx playwright test --project=api
-          fi
+          xvfb-run npx playwright test -c playwright.config.ts --project=${{ github.event.inputs.project }}
 
       - name: Upload Playwright HTML report to GitHub Actions Artifacts
         if: ${{ !cancelled() }}
