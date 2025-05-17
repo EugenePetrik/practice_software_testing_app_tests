@@ -7,6 +7,27 @@ on:
     branches: [ main, master ]
 
 jobs:
+  type-check-and-lint:
+    timeout-minutes: 3
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Node JS
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run type check
+        run: npm run type-check
+
+      - name: Run lint
+        run: npm run lint
+
   playwright-tests:
     timeout-minutes: 10
     env:
